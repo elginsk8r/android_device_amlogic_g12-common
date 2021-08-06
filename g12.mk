@@ -79,8 +79,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.3-service.clearkey
 
 ## fastbootd
+ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.fastbootd.available=true
 PRODUCT_PACKAGES += fastbootd
+endif
 
 ## File-system permissions
 PRODUCT_PACKAGES += \
@@ -107,13 +109,17 @@ PRODUCT_PACKAGES += \
 
 # Init-Files
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/init-files/fstab.amlogic:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.amlogic \
     $(COMMON_PATH)/init-files/init.amlogic.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.amlogic.rc \
     $(COMMON_PATH)/init-files/init.amlogic.board.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.amlogic.board.rc \
     $(COMMON_PATH)/init-files/init.amlogic.media.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.amlogic.media.rc \
     $(COMMON_PATH)/init-files/init.amlogic.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.amlogic.usb.rc \
     $(COMMON_PATH)/init-files/init.recovery.amlogic.rc:recovery/root/init.recovery.amlogic.rc \
     $(COMMON_PATH)/init-files/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc
+
+ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/init-files/fstab.amlogic:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.amlogic
+endif
 
 ## Kernel Modules
 PRODUCT_PACKAGES += \
@@ -157,10 +163,12 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
 ## Partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS ?= true
+ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT  := true
 BUILDING_SUPER_EMPTY_IMAGE := true
 PRODUCT_BUILD_SUPER_PARTITION := true
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+endif
 
 ## Permissions
 PRODUCT_COPY_FILES +=  \
