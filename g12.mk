@@ -11,6 +11,9 @@ COMMON_PATH := device/amlogic/g12-common
 ## AAPT
 PRODUCT_AAPT_PREF_CONFIG := tvdpi
 
+# APEX
+PRODUCT_COMPRESSED_APEX := false
+
 ## Audio
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/audio/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
