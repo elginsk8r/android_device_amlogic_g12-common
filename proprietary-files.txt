@@ -126,7 +126,8 @@ vendor/etc/wifi/wpa_supplicant.conf:vendor/etc/wifi/wpa_supplicant_overlay.conf
 vendor/lib/android.hardware.graphics.composer@2.1-resources-vendor.so
 vendor/lib/android.hardware.graphics.composer@2.2-resources-vendor.so
 vendor/lib/arm.graphics-V1-ndk_platform.so
-vendor/lib/egl/libGLES_mali.so
+vendor/lib/egl/libGLES_mali.so:vendor/lib/egl/libGLES_dvalin_ion.so
+vendor/lib/egl/libGLES_gondul_ion.so|164418beb9efa984bd1c427f1bf50de3d2fd54f3
 vendor/lib/firmware/video/h264_enc.bin
 vendor/lib/firmware/video/video_ucode.bin
 vendor/lib/hw/android.hardware.bluetooth@1.0-impl-droidlogic.so
